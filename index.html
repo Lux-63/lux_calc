@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>А вот и калькулятор</title>
+    <link rel="icon" href="https://icon2.cleanpng.com/20180411/ise/kisspng-credit-card-automated-teller-machine-payment-termi-calculator-5aceb6b416e947.9896627815234966280939.jpg" type="image/jpg" size="64x64">
+</head>
+<body>
+    <center> 
+    <div class="display">0
+    </div>
+    <div>
+        <button id="AC" type="button" class="button" onclick="cal(NaN)">AC</button>
+        <button id="erase" type="button" class="button" onclick="cal(NaN)">&#8592;</button>
+        <button id="+/-" type="button" class="button" onclick="cal(NaN)">+/-</button>
+        <button id="/" type="button" class="button" onclick="cal(NaN)">/</button>
+    </div>  
+    <div>
+        <button id="7" type="button" class="button" onclick="cal(7)">7</button>
+        <button id="8" type="button" class="button" onclick="cal(8)">8</button>
+        <button id="9" type="button" class="button" onclick="cal(9)">9</button>
+        <button id="*" type="button" class="button" onclick="cal(NaN)">x</button>
+    </div>   
+    <div>   
+        <button id="4" type="button" class="button" onclick="cal(4)">4</button>
+        <button id="5" type="button" class="button" onclick="cal(5)">5</button>
+        <button id="6" type="button" class="button" onclick="cal(6)">6</button>
+        <button id="-" type="button" class="button" onclick="cal(NaN)">-</button>
+    </div>
+    <div>
+        <button id="1" type="button" class="button" onclick="cal(1)">1</button>
+        <button id="2" type="button" class="button" onclick="cal(2)">2</button>
+        <button id="3" type="button" class="button" onclick="cal(3)">3</button>
+        <button id="+" type="button" class="button" onclick="cal(NaN)">+</button>   
+    </div>
+    <div>
+        <button id="%" type="button" class="button" onclick="cal(NaN)">%</button>
+        <button id="0" type="button" class="button" onclick="cal(0)">0</button>
+        <button id="." type="button" class="button" onclick="cal(NaN)">.</button>
+        <button id="=" type="button" class="button" onclick="cal(NaN)">=</button>
+    </div>
+    </center>
+</body>
+
+<style>
+ .button {
+    height: 60px;
+    width: 60px;
+    font-weight: 500;
+    font-size: 25px;
+    margin: 4px;
+}
+ .display {
+    font-size: 50px;
+    text-align: right;
+    margin-top: 70px;
+    border: 1px inset;
+    width: 273px;
+    height: 60px;
+ } 
+</style>
+
+<script src="script01.js"></script>
+
+</html>
