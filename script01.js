@@ -1,4 +1,4 @@
 ﻿function cal(n) {
     let i=n
-    alert(i);
+    display.innerHTML = i;
 };
