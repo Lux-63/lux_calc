@@ -1,4 +1,10 @@
 ﻿function cal(n) {
-    let i=n
-    display.innerHTML = i;
+    display.innerHTML += n;
+};
+
+function reset() {
+    display.innerHTML = '';
+};
+function getResult() {
+    display.textContent = cal() * 1;
 };
