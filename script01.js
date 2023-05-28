@@ -1,10 +1,13 @@
-﻿function cal(n) {
-    display.innerHTML += n;
+﻿let i = document.querySelector('.display');
+function cal(n) {
+   i.innerHTML += n;
 };
 
+
 function reset() {
-    display.innerHTML = '';
+    i.innerHTML = '';
 };
-function getResult() {
-    display.textContent = cal() * 1;
+
+function getRes() {
+    i.innerHTML = eval(i.innerHTML);
 };
