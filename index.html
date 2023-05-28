@@ -7,25 +7,25 @@
 </head>
 <body>
     <div class="frame">
-        <div id="display" class="display">
+        <div class="display">
         </div>
             <div>
                 <button type="button" class="button" onclick="reset()">AC</button>
                 <button type="button" class="button" onclick="cal(NaN)">&#8592;</button>
                 <button type="button" class="button" onclick="cal(NaN)">+/-</button>
-                <button type="button" class="button" onclick="cal(NaN)">/</button>
+                <button type="button" class="button" onclick="cal('/')">/</button>
             </div>  
             <div>
                 <button type="button" class="button" onclick="cal(7)">7</button>
                 <button type="button" class="button" onclick="cal(8)">8</button>
                 <button type="button" class="button" onclick="cal(9)">9</button>
-                <button type="button" class="button" onclick="cal(NaN)">x</button>
+                <button type="button" class="button" onclick="cal('*')">x</button>
             </div>   
             <div>   
                 <button type="button" class="button" onclick="cal(4)">4</button>
                 <button type="button" class="button" onclick="cal(5)">5</button>
                 <button type="button" class="button" onclick="cal(6)">6</button>
-                <button type="button" class="button" onclick="cal(NaN)">-</button>
+                <button type="button" class="button" onclick="cal('-')">-</button>
             </div>
             <div>
                 <button type="button" class="button" onclick="cal(1)">1</button>
@@ -36,7 +36,7 @@
             <div>
                 <button type="button" class="button" onclick="cal(NaN)">%</button>
                 <button type="button" class="button" onclick="cal(0)">0</button>
-                <button type="button" class="button" onclick="cal(NaN)">.</button>
+                <button type="button" class="button" onclick="cal('.')">.</button>
                 <button type="button" class="button" onclick="getRes()">=</button>
             </div>
     </div>
