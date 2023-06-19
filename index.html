@@ -11,33 +11,33 @@
         </div>
             <div>
                 <button type="button" class="button" onclick="reset()">AC</button>
-                <button type="button" class="button" onclick="cal(NaN)">&#8592;</button>
-                <button type="button" class="button" onclick="cal(NaN)">+/-</button>
-                <button type="button" class="button" onclick="cal('/')">/</button>
+                <button type="button" class="button" onclick="removeLastCharacter()">&#8592;</button>
+                <button type="button" class="button" onclick="addCheck(NaN)">+/-</button>
+                <button type="button" class="button" onclick="addCheck('/')">/</button>
             </div>  
             <div>
-                <button type="button" class="button" onclick="cal(7)">7</button>
-                <button type="button" class="button" onclick="cal(8)">8</button>
-                <button type="button" class="button" onclick="cal(9)">9</button>
-                <button type="button" class="button" onclick="cal('*')">x</button>
+                <button type="button" class="button" onclick="addCheck(7)">7</button>
+                <button type="button" class="button" onclick="addCheck(8)">8</button>
+                <button type="button" class="button" onclick="addCheck(9)">9</button>
+                <button type="button" class="button" onclick="addCheck('*')">x</button>
             </div>   
             <div>   
-                <button type="button" class="button" onclick="cal(4)">4</button>
-                <button type="button" class="button" onclick="cal(5)">5</button>
-                <button type="button" class="button" onclick="cal(6)">6</button>
-                <button type="button" class="button" onclick="cal('-')">-</button>
+                <button type="button" class="button" onclick="addCheck(4)">4</button>
+                <button type="button" class="button" onclick="addCheck(5)">5</button>
+                <button type="button" class="button" onclick="addCheck(6)">6</button>
+                <button type="button" class="button" onclick="addCheck('-')">-</button>
             </div>
             <div>
-                <button type="button" class="button" onclick="cal(1)">1</button>
-                <button type="button" class="button" onclick="cal(2)">2</button>
-                <button type="button" class="button" onclick="cal(3)">3</button>
-                <button type="button" class="button" onclick="cal('+')">+</button>   
+                <button type="button" class="button" onclick="addCheck(1)">1</button>
+                <button type="button" class="button" onclick="addCheck(2)">2</button>
+                <button type="button" class="button" onclick="addCheck(3)">3</button>
+                <button type="button" class="button" onclick="addCheck('+')">+</button>   
             </div>
             <div>
-                <button type="button" class="button" onclick="cal(NaN)">%</button>
-                <button type="button" class="button" onclick="cal(0)">0</button>
-                <button type="button" class="button" onclick="cal('.')">.</button>
-                <button type="button" class="button" onclick="getRes()">=</button>
+                <button type="button" class="button" onclick="addCheck('%')">%</button>
+                <button type="button" class="button" onclick="addCheck(0)">0</button>
+                <button type="button" class="button" onclick="addCheck('.')">.</button>
+                <button type="button" class="button" onclick="getResult()">=</button>
             </div>
     </div>
 </body>

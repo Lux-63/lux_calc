@@ -1,13 +1,18 @@
-﻿let i = document.querySelector('.display');
-function cal(n) {
-   i.innerHTML += n;
+﻿let showOnDisplay = document.querySelector('.display');
+
+function addCheck(n) {
+    showOnDisplay.innerHTML += n;
 };
 
 
 function reset() {
-    i.innerHTML = '';
+    showOnDisplay.innerHTML = '';
 };
 
-function getRes() {
-    i.innerHTML = eval(i.innerHTML);
+function getResult() {
+    showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
+};
+
+function removeLastCharacter() {
+    showOnDisplay.innerHTML = showOnDisplay.innerHTML.slice(0, -1);
 };
