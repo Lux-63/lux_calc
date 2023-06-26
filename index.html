@@ -10,34 +10,34 @@
         <div class="display">
         </div>
             <div>
-                <button type="button" class="button" onclick="reset()">AC</button>
+                <button type="button" class="button" onclick="clearInputField()">AC</button>
                 <button type="button" class="button" onclick="removeLastCharacter()">&#8592;</button>
-                <button type="button" class="button" onclick="addCheck(NaN)">+/-</button>
-                <button type="button" class="button" onclick="addCheck('/')">/</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(NaN)">+/-</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands('/')">/</button>
             </div>  
             <div>
-                <button type="button" class="button" onclick="addCheck(7)">7</button>
-                <button type="button" class="button" onclick="addCheck(8)">8</button>
-                <button type="button" class="button" onclick="addCheck(9)">9</button>
-                <button type="button" class="button" onclick="addCheck('*')">x</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(7)">7</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(8)">8</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(9)">9</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands('*')">x</button>
             </div>   
             <div>   
-                <button type="button" class="button" onclick="addCheck(4)">4</button>
-                <button type="button" class="button" onclick="addCheck(5)">5</button>
-                <button type="button" class="button" onclick="addCheck(6)">6</button>
-                <button type="button" class="button" onclick="addCheck('-')">-</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(4)">4</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(5)">5</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(6)">6</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands('-')">-</button>
             </div>
             <div>
-                <button type="button" class="button" onclick="addCheck(1)">1</button>
-                <button type="button" class="button" onclick="addCheck(2)">2</button>
-                <button type="button" class="button" onclick="addCheck(3)">3</button>
-                <button type="button" class="button" onclick="addCheck('+')">+</button>   
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(1)">1</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(2)">2</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(3)">3</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands('+')">+</button>   
             </div>
             <div>
-                <button type="button" class="button" onclick="addCheck('%')">%</button>
-                <button type="button" class="button" onclick="addCheck(0)">0</button>
-                <button type="button" class="button" onclick="addCheck('.')">.</button>
-                <button type="button" class="button" onclick="getResult()">=</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands('%')">%</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands(0)">0</button>
+                <button type="button" class="button" onclick="addValueAndCheckForDuplicateOperands('.')">.</button>
+                <button type="button" class="button" onclick="checkingThePercentageAndGettingTheResult()">=</button>
             </div>
     </div>
 </body>
