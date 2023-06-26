@@ -1,39 +1,40 @@
 ﻿let showOnDisplay = document.querySelector('.display');
 
-function addCheck(n) {
-    let searchSimbol = '/*-+%.';
-    let operatorOne = searchSimbol.includes(showOnDisplay.innerHTML[showOnDisplay.innerHTML.length -1]);
-    let operatorTwo = searchSimbol.includes(n);
-    let characterReplacement = showOnDisplay.innerHTML.slice(0, -1) + n;
+function addValueAndCheckForDuplicateOperands(n) {
+    let specialChars = '/*-+%.';
+    let firstOperatorCharacter = specialChars.includes(showOnDisplay.innerHTML[showOnDisplay.innerHTML.length -1]);
+    let secondOperatorCharacter = specialChars.includes(n);
+    let replacingOneCharacterWithAnother = showOnDisplay.innerHTML.slice(0, -1) + n;
 
-    
-    console.log(operatorOne, operatorTwo, characterReplacement,n)
+    //console.log(firstOperatorCharacter, secondOperatorCharacter, replacingOneCharacterWithAnother, n)
 
-        if (operatorOne == true && operatorTwo == true) {
-            showOnDisplay.innerHTML = characterReplacement;
-        }
-
-        else {
+        if (firstOperatorCharacter == true && secondOperatorCharacter == true) {
+            showOnDisplay.innerHTML = replacingOneCharacterWithAnother;
+        }else {
             showOnDisplay.innerHTML += n;
         }
 };
 
 
-function reset() {
+function clearInputField() {
     showOnDisplay.innerHTML = '';
 };
 
-function getResult() {
-    /*необходимо делать проверку символа % в случае соответствия переправлять на функцию процента
-    if (showOnDisplay.length[penult] == '%') {
-        showOnDisplay.innerHTML = eval(percentageOfTheAmount);
+function checkingThePercentageAndGettingTheResult() {
+    //необходимо делать проверку символа % в случае соответствия переправлять на функцию процента
+    let checkForPercentage = showOnDisplay.innerHTML.includes('%')
+    let gettingTheValueOfTheAmount = showOnDisplay.innerHTML.substring(0, showOnDisplay.innerHTML.indexOf("%"));
+    let getPercentageValue = showOnDisplay.innerHTML.substring(showOnDisplay.innerHTML.indexOf("%") +1);
 
+    //console.log(checkForPercentage)
+
+        if (checkForPercentage == true) {     
+            showOnDisplay.innerHTML = eval((gettingTheValueOfTheAmount /100) * getPercentageValue);
+    }else {
             showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
-    };*/
-    showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
+    }
 };
 
 function removeLastCharacter() {
     showOnDisplay.innerHTML = showOnDisplay.innerHTML.slice(0, -1);
 };
-
