@@ -26,11 +26,11 @@ function getResult() {
 
     //console.log(checkForPercentage)
     if (checkForPercentage == true) {    
-        const indexPercentage = showOnDisplay.innerHTML.indexOf("%");
-        const baseValue = Number(showOnDisplay.innerHTML.substring(0, indexPercentage));
-        const percentValue = Number(showOnDisplay.innerHTML.substring(indexPercentage +1));
+        //const indexPercentage = showOnDisplay.innerHTML.indexOf("%");
+        //const baseValue = Number(showOnDisplay.innerHTML.substring(0, indexPercentage));
+        //const percentValue = Number(showOnDisplay.innerHTML.substring(indexPercentage +1));
 
-        showOnDisplay.innerHTML = eval((baseValue /100) * percentValue);
+        showOnDisplay.innerHTML = percentageOfAmount();
     } else {
         showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
     }
@@ -38,4 +38,12 @@ function getResult() {
 
 function removeLastCharacter() {
     showOnDisplay.innerHTML = showOnDisplay.innerHTML.slice(0, -1);
+};
+
+function percentageOfAmount(){
+    const indexPercentage = showOnDisplay.innerHTML.indexOf("%");
+    const baseValue = Number(showOnDisplay.innerHTML.substring(0, indexPercentage));
+    const percentValue = Number(showOnDisplay.innerHTML.substring(indexPercentage +1));
+
+showOnDisplay.innerHTML = eval((baseValue /100) * percentValue);
 };
