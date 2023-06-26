@@ -45,5 +45,5 @@ function percentageOfAmount(){
     const baseValue = Number(showOnDisplay.innerHTML.substring(0, indexPercentage));
     const percentValue = Number(showOnDisplay.innerHTML.substring(indexPercentage +1));
 
-showOnDisplay.innerHTML = eval((baseValue /100) * percentValue);
+    return eval((baseValue /100) * percentValue);
 };
