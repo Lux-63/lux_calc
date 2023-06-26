@@ -10,7 +10,8 @@ function addValueAndCheckForDuplicateOperands(n) {
     //console.log(firstOperatorCharacter, secondOperatorCharacter, replacingOneCharacterWithAnother, n)
     if (firstOperatorCharacter === true && secondOperatorCharacter === true) {
         showOnDisplay.innerHTML = replacingOneCharacterWithAnother;
-    }else {showOnDisplay.innerHTML += n;
+    } else {
+        showOnDisplay.innerHTML += n;
     }
 };
 
@@ -29,7 +30,8 @@ function checkingThePercentageAndGettingTheResult() {
     //console.log(checkForPercentage)
     if (checkForPercentage == true) {     
         showOnDisplay.innerHTML = eval((gettingTheValueOfTheAmount /100) * getPercentageValue);
-    }else {showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
+    } else {
+        showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
     }
 };
 
