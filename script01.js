@@ -1,6 +1,6 @@
 ﻿const showOnDisplay = document.querySelector('.display');
 
-function addValueAndCheckForDuplicateOperands(n) {
+function addCharToDisplay(n) {
     const specialChars = '/*-+%.';
     const lastChar = showOnDisplay.innerHTML[showOnDisplay.innerHTML.length -1];
     const firstOperatorCharacter = specialChars.includes(lastChar);
@@ -26,11 +26,11 @@ function getResult() {
 
     //console.log(checkForPercentage)
     if (checkForPercentage == true) {    
-        const numberAndPercentage = showOnDisplay.innerHTML.indexOf("%");
-        const gettingTheValueOfTheAmount = showOnDisplay.innerHTML.substring(0, numberAndPercentage);
-        const getPercentageValue = showOnDisplay.innerHTML.substring(numberAndPercentage +1);
+        const indexPercentage = showOnDisplay.innerHTML.indexOf("%");
+        const baseValue = Number(showOnDisplay.innerHTML.substring(0, indexPercentage));
+        const percentValue = Number(showOnDisplay.innerHTML.substring(indexPercentage +1));
 
-        showOnDisplay.innerHTML = eval((gettingTheValueOfTheAmount /100) * getPercentageValue);
+        showOnDisplay.innerHTML = eval((baseValue /100) * percentValue);
     } else {
         showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
     }
