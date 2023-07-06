@@ -69,6 +69,6 @@ function plusPercentageOfAmount(n){
 
     //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
     if (firstOperatorCharacter === true) {            
-        return eval((baseValue - (baseValue /100) * percentValue)+ baseValue);
+        return eval(((baseValue /100) * percentValue)+ baseValue);
     }
     };
