@@ -27,7 +27,7 @@ function getResult() {
 
     //console.log(checkForPercentage)
     if (checkForPercentage == true) {    
-        showOnDisplay.innerHTML = percentageOfAmount();
+        showOnDisplay.innerHTML = percentageAmount();
     } else {
         showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
     }
@@ -39,15 +39,23 @@ function removeLastCharacter() {
 
 
 //код с процентом, что бы можно было отнимать или складывать результаты (100-90%=10 или 100+90%=190)
-function percentageOfAmount(n){
+function percentageAmount(n){
     if (showOnDisplay.innerHTML.includes('-') === true) {
-        return minusPercentageOfAmount(n);
+        return minusPercentageAmount(n);
     } 
     if (showOnDisplay.innerHTML.includes('+') === true) {
-        return plusPercentageOfAmount(n);
+        return plusPercentageAmount(n);
+    }
+    if (showOnDisplay.innerHTML.includes('*') === true) {
+        return multiplyPercentageAmount(n);
+    }
+    if (showOnDisplay.innerHTML.includes('/') === true) {
+        return dividePercentageAmount(n);
     }
     };
-function minusPercentageOfAmount(n){
+    
+function minusPercentageAmount(n){
+    //отнимать процент
     const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
     const firstOperatorCharacter = deleteChars.includes('-');
     const indexPercentage = deleteChars.indexOf('-');
@@ -59,8 +67,8 @@ function minusPercentageOfAmount(n){
     return eval(baseValue - (baseValue /100) * percentValue);
     }
 };
-//надо сделать что бы работало в сложении
-function plusPercentageOfAmount(n){
+function plusPercentageAmount(n){
+    //складывать процент
     const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
     const firstOperatorCharacter = showOnDisplay.innerHTML.includes('+');
     const indexPercentage = showOnDisplay.innerHTML.indexOf('+');
@@ -69,6 +77,32 @@ function plusPercentageOfAmount(n){
 
     //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
     if (firstOperatorCharacter === true) {            
-        return eval(((baseValue /100) * percentValue)+ baseValue);
+        return eval(((baseValue /100) * percentValue) + baseValue);
     }
     };
+function multiplyPercentageAmount(n){
+    //умножать процент
+    const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
+    const firstOperatorCharacter = showOnDisplay.innerHTML.includes('*');
+    const indexPercentage = showOnDisplay.innerHTML.indexOf('*');
+    const baseValue = Number(deleteChars.substring(0, indexPercentage));
+    const percentValue = Number(deleteChars.substring(indexPercentage +1));
+
+    //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
+    if (firstOperatorCharacter === true) {            
+        return eval(((baseValue /100) * percentValue) * baseValue);
+    }
+};
+function dividePercentageAmount(n){
+    //делить процент
+    const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
+    const firstOperatorCharacter = showOnDisplay.innerHTML.includes('/');
+    const indexPercentage = showOnDisplay.innerHTML.indexOf('/');
+    const baseValue = Number(deleteChars.substring(0, indexPercentage));
+    const percentValue = Number(deleteChars.substring(indexPercentage +1));
+
+    //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
+    if (firstOperatorCharacter === true) {            
+        return eval(baseValue / ((baseValue /100) * percentValue));
+    }
+};
