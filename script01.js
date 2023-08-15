@@ -5,34 +5,24 @@ let calculateData = [];
 
 function addCharToDisplay(n) {
         //замена оператора на новый нажатый оператор
-        const isLastChar = showOnDisplay.innerHTML[showOnDisplay.innerHTML.length -1];
+        const isLastChar = calculateData[calculateData.length -1];
     
         const penultimateOperatorCharacter = specialChars.includes(isLastChar); 
-        const currentOperatorCharacter = specialChars.includes(n);   
-        //const penultimateNumberCharacter = numberEntry.includes(lastChar);
-        //const currentNumberCharacter = numberEntry.includes(n);
-        //console.log(firstOperatorCharacter, secondOperatorCharacter, replacingOneCharacterWithAnother, n)
+        const currentOperatorCharacter = specialChars.includes(n);
         if (penultimateOperatorCharacter === false && currentOperatorCharacter === false){
-            //showOnDisplay.innerHTML += n;
             calculateData.push (n);
         }
         if (penultimateOperatorCharacter === false && currentOperatorCharacter === true){
-            //showOnDisplay.innerHTML += n
-            calculateData.pop(showOnDisplay.innerHTML.slice(0, -1));
-            calculateData.push(showOnDisplay.innerHTML.slice(-1));
+            calculateData.push(n);
         }
         
         if (penultimateOperatorCharacter === true && currentOperatorCharacter === true) {
-            showOnDisplay.innerHTML = showOnDisplay.innerHTML.slice(0, -1) + n;
-            calculateData.push(showOnDisplay.innerHTML.slice(0, -1));
+            calculateData.splice(-1, 1, n)
         } 
     
         if (penultimateOperatorCharacter === true && currentOperatorCharacter === false) {
             calculateData.push(n);
-        } else {
-            showOnDisplay.innerHTML += n;
-            calculateData.push (showOnDisplay.innerHTML);
-        };   
+        };
         console.log(n, calculateData);
     };
 
