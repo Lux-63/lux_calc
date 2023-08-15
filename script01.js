@@ -3,27 +3,22 @@ const specialChars = '/*-+%.';
 const numberEntry ='1234567890'
 let calculateData = [];
 
-function addCharToDisplay(n) {
+function addCharToDisplay(newChar) {
         //замена оператора на новый нажатый оператор
-        const isLastChar = calculateData[calculateData.length -1];
-    
-        const penultimateOperatorCharacter = specialChars.includes(isLastChar); 
-        const currentOperatorCharacter = specialChars.includes(n);
-        if (penultimateOperatorCharacter === false && currentOperatorCharacter === false){
-            calculateData.push (n);
-        }
-        if (penultimateOperatorCharacter === false && currentOperatorCharacter === true){
-            calculateData.push(n);
-        }
-        
-        if (penultimateOperatorCharacter === true && currentOperatorCharacter === true) {
-            calculateData.splice(-1, 1, n)
-        } 
-    
-        if (penultimateOperatorCharacter === true && currentOperatorCharacter === false) {
-            calculateData.push(n);
+        const lastChar = calculateData[calculateData.length -1];
+        isLastCharSpecial
+        const isLastCharSpecial = specialChars.includes(lastChar); 
+        const isCurrentCharSpecial = specialChars.includes(newChar);
+        if (isLastCharSpecial === false && isCurrentCharSpecial === false){
+            calculateData.push (newChar);
+        } else if (isLastCharSpecial === false && isCurrentCharSpecial === true){
+            calculateData.push(newChar);
+        } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
+            calculateData.splice(-1, 1, newChar)
+        } else if (isLastCharSpecial === true && isCurrentCharSpecial === false) {
+            calculateData.push(newChar);
         };
-        console.log(n, calculateData);
+        console.log(newChar, calculateData);
     };
 
 /*function separationObjects(n) {
