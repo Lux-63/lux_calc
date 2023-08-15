@@ -3,22 +3,22 @@ const specialChars = '/*-+%.';
 const numberEntry ='1234567890'
 let calculateData = [];
 
-function addCharToDisplay(CurrentChar) {
+function addCharToDisplay(currentChar) {
         //замена оператора на новый нажатый оператор
         const lastChar = calculateData[calculateData.length -1];
         const isLastCharSpecial = specialChars.includes(lastChar); 
-        const isCurrentCharSpecial = specialChars.includes(CurrentChar);
+        const isCurrentCharSpecial = specialChars.includes(currentChar);
 
         if (isLastCharSpecial === false && isCurrentCharSpecial === false){
-            calculateData.push (CurrentChar);
+            calculateData.push (currentChar);
         } else if (isLastCharSpecial === false && isCurrentCharSpecial === true){
-            calculateData.push(CurrentChar);
+            calculateData.push(currentChar);
         } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
-            calculateData.splice(-1, 1, CurrentChar)
+            calculateData.splice(-1, 1, currentChar)
         } else if (isLastCharSpecial === true && isCurrentCharSpecial === false) {
-            calculateData.push(CurrentChar);
+            calculateData.push(currentChar);
         };
-        console.log(CurrentChar, calculateData);
+        console.log(currentChar, calculateData);
     };
 
 /*function separationObjects(n) {
