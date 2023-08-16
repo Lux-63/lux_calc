@@ -8,23 +8,24 @@ function addCharToDisplay(currentChar) {
         const lastChar = calculateData[calculateData.length -1];
         const isLastCharSpecial = specialChars.includes(lastChar); 
         const isCurrentCharSpecial = specialChars.includes(currentChar);
-        let str = '';
         
-        if (lastChar = 0) {
+        if (lastChar === undefined) {
             calculateData.push(currentChar);
-        }
+            console.log(calculateData);
+        } else if (isLastCharSpecial === false && isCurrentCharSpecial === false && calculateData.includes(specialChars) === false){
+            const strChars = String(lastChar) + String(currentChar)
+            console.log(strChars);
+            //const numChars = Number(strChars);
+            //console.log(numChar );
 
-        if (isLastCharSpecial === false && isCurrentCharSpecial === false){
-            let str = String(lastChar) + String(currentChar)
-            console.log(str);
+            calculateData.splice(0, 1, Number(strChars));
 
-            calculateData.splice(0, 1, str);
         } else if (isLastCharSpecial === false && isCurrentCharSpecial === true){
-
             calculateData.push(currentChar);
-        } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
 
+        } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
             calculateData.splice(-1, 1, currentChar)
+
         } else if (isLastCharSpecial === true && isCurrentCharSpecial === false) {
 
             calculateData.push(currentChar);
