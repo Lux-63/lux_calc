@@ -9,10 +9,7 @@ function addCharToDisplay(currentChar) {
         const isLastCharSpecial = specialChars.includes(lastChar); 
         const isCurrentCharSpecial = specialChars.includes(currentChar);
         
-        if (lastChar === undefined) {
-            calculateData.push(Number(currentChar));
-            console.log(calculateData);
-        } else if (isLastCharSpecial === false && isCurrentCharSpecial === false){
+        if (isLastCharSpecial === false && isCurrentCharSpecial === false){
             const strChars = String(lastChar) + String(currentChar)
             console.log(strChars);
             //const numChars = Number(strChars);
