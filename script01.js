@@ -10,13 +10,18 @@ function addCharToDisplay(currentChar) {
         const isCurrentCharSpecial = specialChars.includes(currentChar);
         
         if (isLastCharSpecial === false && isCurrentCharSpecial === false){
-            const strChars = String(lastChar) + String(currentChar)
-            console.log(strChars);
-            //const numChars = Number(strChars);
-            //console.log(numChar );
+            if (lastChar === undefined) {
+                calculateData.push(Number(currentChar));
+                console.log(calculateData);
+            } else {
+                const strChars = String(lastChar) + String(currentChar)
+                console.log(strChars);
+                //const numChars = Number(strChars);
+                //console.log(numChar );
 
-            calculateData.splice(0, 1, Number(strChars));
- 
+                calculateData.splice(0, 1, Number(strChars));
+            
+            }
         } else if (isLastCharSpecial === false && isCurrentCharSpecial === true){
             calculateData.push(currentChar);
 
