@@ -9,20 +9,18 @@ function addCharToDisplay(currentChar) {
         const isLastCharSpecial = specialChars.includes(lastChar); 
         const isCurrentCharSpecial = specialChars.includes(currentChar);
         
-        if (isLastCharSpecial === false && isCurrentCharSpecial === false && calculateData.includes(specialChars) === false){
-            if (calculateData.length == 0 && lastChar === undefined) {
-                calculateData.push(currentChar);
-                console.log(calculateData);
-            };
-
+        if (lastChar === undefined) {
+            calculateData.push(currentChar);
+            console.log(Number(calculateData));
+        } else {
             const strChars = String(lastChar) + String(currentChar)
             console.log(strChars);
-            const numChars = Number(strChars);
-            console.log(numChars);
+            //const numChars = Number(strChars);
+            //console.log(numChar );
 
-            calculateData.splice(0, 1, numChars);
-
-        } else if (isLastCharSpecial === false && isCurrentCharSpecial === true){
+            calculateData.splice(0, 1, Number(strChars));
+ 
+        } if (isLastCharSpecial === false && isCurrentCharSpecial === true){
             calculateData.push(currentChar);
 
         } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
