@@ -19,7 +19,7 @@ function addCharToDisplay(currentChar) {
                 //const numChars = Number(strChars);
                 //console.log(numChar );
 
-                calculateData.splice(0, 1, Number(strChars));
+                calculateData[calculateData.length -1] = Number(strChars);
             
             }
         } else if (isLastCharSpecial === false && isCurrentCharSpecial === true){
