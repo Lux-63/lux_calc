@@ -16,8 +16,6 @@ function addCharToDisplay(currentChar) {
             } else {
                 const strChars = String(lastChar) + String(currentChar)
                 console.log(strChars);
-                //const numChars = Number(strChars);
-                //console.log(numChar );
 
                 calculateData[calculateData.length -1] = Number(strChars);
             
@@ -29,11 +27,30 @@ function addCharToDisplay(currentChar) {
             calculateData.splice(-1, 1, currentChar)
 
         } else if (isLastCharSpecial === true && isCurrentCharSpecial === false) {
-
             calculateData.push(currentChar);
         };
         console.log(currentChar, calculateData);
+        showOnDisplayChars();
     };
+
+function showOnDisplayChars () {
+    //вывод на экран одной строки... 
+    for (let i =0; i < calculateData.length; i++){
+        if (i === 0) {
+            res = calculateData;
+        }
+    showOnDisplay.innerHTML = res.join('');
+    }
+
+    
+    /*let i = 0;
+    let res = ''
+    while (calculateData.length >i) {
+        
+        i++
+    }
+    showOnDisplay.innerHTML = res;*/
+}
 
 /*function separationObjects(n) {
     i = addCharToDisplay;
