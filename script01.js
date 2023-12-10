@@ -37,9 +37,9 @@ function showOnDisplayChars () {
     //вывод на экран одной строки... 
     for (let i =0; i < calculateData.length; i++){
         if (i === 0) {
-            res = calculateData;
+            result = calculateData;
         }
-    showOnDisplay.innerHTML = res.join('');
+    showOnDisplay.innerHTML = result.join('');
     }
 
     
@@ -88,11 +88,20 @@ function getResult() {
     }
     console.log(calculateData);
 };
-
+//удалять последний символ
 function removeLastCharacter() {
-    showOnDisplay.innerHTML = showOnDisplay.innerHTML.slice(0, -1);
-    calculateData = calculateData.slice(0, -1);
-    console.log(calculateData);
+    let lastValue = calculateData.splice(-1).toString();
+    console.log(lastValue, lastValue.length, calculateData);
+    
+    if (lastValue.length > 1) {
+        lastValue = lastValue.slice(0, lastValue.length -1)
+        calculateData.push(+ lastValue);
+        console.log(lastValue, calculateData);
+        showOnDisplayChars();
+    } else {
+        console.log(calculateData);
+        showOnDisplayChars();
+    };
 };
 
 
@@ -164,3 +173,9 @@ function dividePercentageAmount(n){
         return eval(baseValue / ((baseValue /100) * percentValue));
     }
 };
+
+/*баги, которые нашел: 
+удаление последней цифры и добавление новой цифры вместо. при первом нажатии, что бы добавить, 
+необходимо дважды щелкнуть на кнопку. когда цифру удаляешь второй раз, то текущий объект массива анулируется и 
+вводится новая цифра, стирая предыдещее значение...
+*/
