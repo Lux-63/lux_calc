@@ -2,6 +2,7 @@
 const specialChars = '/*-+%.';
 const numberEntry ='1234567890'
 let calculateData = [];
+showOnDisplay.innerHTML = 0;
 
 function addCharToDisplay(currentChar) {
         //замена оператора на новый нажатый оператор
@@ -69,7 +70,7 @@ function showOnDisplayChars () {
 
 
 function clearInputField() {
-    showOnDisplay.innerHTML = '';
+    showOnDisplay.innerHTML = 0;
     calculateData = [];
     console.log(calculateData);
 };
@@ -134,9 +135,11 @@ function removeLastCharacter() {
         lastValue = lastValue.slice(0, lastValue.length -1)
         calculateData.push(+ lastValue);
         console.log(lastValue, calculateData);
+        showOnDisplay.innerHTML = 0;
         showOnDisplayChars();
     } else {
         console.log(calculateData);
+        showOnDisplay.innerHTML = 0;
         showOnDisplayChars();
     };
 };
@@ -225,4 +228,7 @@ function dividePercentageAmount(n){
 
 подумать надо ли выводить подсчет сразу при нажатии на оператора или оставить 
 все только в фурнкции результата
+
+при нажатии на минус перед числом, все ломается. надо сделать что бы если 0 индекс это -, 
+то число делать отрицательным
 */
