@@ -34,7 +34,7 @@ function addCharToDisplay(currentChar) {
     };
 
 function showOnDisplayChars () {
-    //вывод на экран одной строки... 
+    //вывод на дисплей массива в виде строки... 
     for (let i =0; i < calculateData.length; i++){
         if (i === 0) {
             result = calculateData;
@@ -77,22 +77,59 @@ function clearInputField() {
 function getResult() {
 
     //результат и вычисление процента
-    const checkForPercentage = showOnDisplay.innerHTML.includes('%')
+    const checkForPercentage = calculateData.includes('%')
 
     //console.log(checkForPercentage)
     if (checkForPercentage == true) {    
-        showOnDisplay.innerHTML = percentageAmount();
+        percentageAmount();
     } else {
-        showOnDisplay.innerHTML = eval(showOnDisplay.innerHTML);
-        calculateData = showOnDisplay.innerHTML;   
-    }
+                if (calculateData.length == 1) {
+            showOnDisplay.innerHTML = calculateData[0];
+        };
+        for (let i = 0; i < calculateData.length; i++) {
+            if (specialChars.includes(calculateData[i]) === true) {
+                defineOperator(calculateData[i-1], calculateData[i], calculateData[i+1])
+            };
+        };
+    };  
     console.log(calculateData);
 };
+
+function defineOperator (operandOne, operator, operandTwo) {
+    if (operator == '+') {
+        resultPlus(operandOne, operator, operandTwo);
+    } else if (operator == '-') {
+        resultMinus(operandOne, operator, operandTwo);
+    } else if (operator == '/') {
+        resultDivide (operandOne, operator, operandTwo);
+    }  else if (operator == '*') {
+        resultMultiply (operandOne, operator, operandTwo);
+    };
+};
+
+function resultPlus (operandOne, operator, operandTwo) { // сложение
+    calculateData.splice(0, 3, operandOne + operandTwo)
+    getResult();
+};
+function resultMinus (operandOne, operator, operandTwo) { // вычитание
+    calculateData.splice(0, 3, operandOne - operandTwo)
+    getResult();
+};
+function resultMultiply (operandOne, operator, operandTwo) { // умножение
+    calculateData.splice(0, 3, operandOne * operandTwo)
+    getResult();
+};
+function resultDivide (operandOne, operator, operandTwo) { // деление
+    calculateData.splice(0, 3, operandOne / operandTwo)
+    getResult();
+};
+
+
 //удалять последний символ
 function removeLastCharacter() {
     let lastValue = calculateData.splice(-1).toString();
     console.log(lastValue, lastValue.length, calculateData);
-    
+
     if (lastValue.length > 1) {
         lastValue = lastValue.slice(0, lastValue.length -1)
         calculateData.push(+ lastValue);
@@ -175,7 +212,17 @@ function dividePercentageAmount(n){
 };
 
 /*баги, которые нашел: 
-удаление последней цифры и добавление новой цифры вместо. при первом нажатии, что бы добавить, 
-необходимо дважды щелкнуть на кнопку. когда цифру удаляешь второй раз, то текущий объект массива анулируется и 
-вводится новая цифра, стирая предыдещее значение...
+
+если введен только один символ и его удалить с помощью backspace, то этот сивол удаляется
+только в массиве, а в дисплее он остается
+
+переделать процент
+
+избавиться от eval
+
+отображение на дисплее скоректировать, что бы большое количество символов  
+было внутри рамок дисплея
+
+подумать надо ли выводить подсчет сразу при нажатии на оператора или оставить 
+все только в фурнкции результата
 */
