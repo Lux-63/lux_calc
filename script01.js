@@ -81,7 +81,7 @@ function getResult() {
   const checkForPercentage = calculateData.includes("%");
 
   if (checkForPercentage == true) {
-    percentageAmount();
+    executeOperation(calculateData);
   } else {
     if (calculateData.length == 1) {
       showOnDisplay.innerHTML = calculateData[0];
@@ -101,13 +101,13 @@ function getResult() {
 
 function defineOperator(operandOne, operator, operandTwo) {
   if (operator == "+") {
-    resultPlus(operandOne, operator, operandTwo);
+    resultPlus(operandOne, operandTwo);
   } else if (operator == "-") {
-    resultMinus(operandOne, operator, operandTwo);
+    resultMinus(operandOne, operandTwo);
   } else if (operator == "/") {
-    resultDivide(operandOne, operator, operandTwo);
+    resultDivide(operandOne, operandTwo);
   } else if (operator == "*") {
-    resultMultiply(operandOne, operator, operandTwo);
+    resultMultiply(operandOne, operandTwo);
   }
 }
 
@@ -117,7 +117,7 @@ function defineOperator(operandOne, operator, operandTwo) {
  * @param {String} operator
  * @param {Number} operandTwo
  */
-function resultPlus(operandOne, operator, operandTwo) {
+function resultPlus(operandOne, operandTwo) {
   calculateData.splice(0, 3, operandOne + operandTwo);
   getResult();
 }
@@ -128,7 +128,7 @@ function resultPlus(operandOne, operator, operandTwo) {
  * @param {String} operator
  * @param {Number} operandTwo
  */
-function resultMinus(operandOne, operator, operandTwo) {
+function resultMinus(operandOne, operandTwo) {
   // вычитание
   calculateData.splice(0, 3, operandOne - operandTwo);
   getResult();
@@ -140,7 +140,7 @@ function resultMinus(operandOne, operator, operandTwo) {
  * @param {String} operator
  * @param {Number} operandTwo
  */
-function resultMultiply(operandOne, operator, operandTwo) {
+function resultMultiply(operandOne, operandTwo) {
   calculateData.splice(0, 3, operandOne * operandTwo);
   getResult();
 }
@@ -151,7 +151,7 @@ function resultMultiply(operandOne, operator, operandTwo) {
  * @param {string} operator
  * @param {Number} operandTwo
  */
-function resultDivide(operandOne, operator, operandTwo) {
+function resultDivide(operandOne, operandTwo) {
   // деление
   calculateData.splice(0, 3, operandOne / operandTwo);
   getResult();
@@ -180,7 +180,7 @@ function removeLastCharacter() {
 /**
  * Код с процентом, проверка что делать с процентом (- + / *).
  */
-function percentageAmount() {
+function executeOperation() {
   if (showOnDisplay.innerHTML.includes("-") === true) {
     minusPercentageAmount();
   }
@@ -200,7 +200,7 @@ function percentageAmount() {
  * @returns {Number}
  */
 function minusPercentageAmount() {
-  const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
+  const deleteChars = calculateData.pop();
   const firstOperatorCharacter = deleteChars.includes("-");
   const indexPercentage = deleteChars.indexOf("-");
   const baseValue = Number(deleteChars.substring(0, indexPercentage));
