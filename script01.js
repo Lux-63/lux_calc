@@ -67,7 +67,7 @@ function getResult() {
     }
     for (let i = 0; i < calculateData.length; i++) {
       if (specialChars.includes(calculateData[i]) === true) {
-        defineOperator(
+        return defineOperator(
           calculateData[i - 1],
           calculateData[i],
           calculateData[i + 1]
