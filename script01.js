@@ -1,5 +1,5 @@
 ﻿const showOnDisplay = document.querySelector(".display");
-const specialChars = "/*-+%.";
+const specialChars = "/x-+%.";
 const numberEntry = "1234567890";
 let calculateData = [];
 showOnDisplay.innerHTML = 0;
@@ -46,38 +46,62 @@ function showOnDisplayChars() {
   }
 }
 
-
 function clearInputField() {
   showOnDisplay.innerHTML = 0;
   calculateData = [];
   console.log(calculateData);
 }
 
+function getPriorityOperatorIndex() {
+  const priorityOperators = ["/", "x", "-", "+"];
+  for (let operator of priorityOperators) {
+    let priorityOperatorIndex = calculateData.indexOf(operator);
+    if (priorityOperatorIndex !== -1) {
+      return priorityOperatorIndex;
+    }
+  }
+  return null;
+}
+
 /**
  * Вычисление результата и проверка на процент.
  */
 function getResult() {
-  const checkForPercentage = calculateData.includes("%");
-
-  if (checkForPercentage == true) {
-    executeOperation(calculateData);
-  } else {
-    if (calculateData.length == 1) {
-      showOnDisplay.innerHTML = calculateData[0];
-    }
-    for (let i = 0; i < calculateData.length; i++) {
-      if (specialChars.includes(calculateData[i]) === true) {
-        return defineOperator(
-          calculateData[i - 1],
-          calculateData[i],
-          calculateData[i + 1]
-        );
-      }
-    }
+  if (calculateData.length == 1) {
+    showOnDisplay.innerHTML = calculateData[0];
+    return;
   }
-  console.log(calculateData);
+
+  let priorityOperatorIndex = getPriorityOperatorIndex();
+  if (priorityOperatorIndex === null) {
+    console.log("error");
+    return;
+  }
+  
+  let operandOne = calculateData[priorityOperatorIndex - 1];
+  let operandTwo = calculateData[priorityOperatorIndex +1];
+
+  if (isFinite(operandOne) && isFinite(operandTwo)) {
+    let resultOperation = defineOperator(
+      operandOne,
+      calculateData[priorityOperatorIndex],
+      operandTwo
+    );
+
+    calculateData.splice(priorityOperatorIndex - 1, 3, resultOperation);
+    getResult();
+  
+    console.log(calculateData);
+  }
 }
 
+/**
+ * патерн стратегия
+ * @param {*} operandOne
+ * @param {*} operator
+ * @param {*} operandTwo
+ * @returns
+ */
 function defineOperator(operandOne, operator, operandTwo) {
   if (operator == "+") {
     return resultPlus(operandOne, operandTwo);
@@ -85,7 +109,7 @@ function defineOperator(operandOne, operator, operandTwo) {
     return resultMinus(operandOne, operandTwo);
   } else if (operator == "/") {
     return resultDivide(operandOne, operandTwo);
-  } else if (operator == "*") {
+  } else if (operator == "x") {
     return resultMultiply(operandOne, operandTwo);
   }
 }
@@ -97,7 +121,7 @@ function defineOperator(operandOne, operator, operandTwo) {
  * @param {Number} operandTwo
  */
 function resultPlus(operandOne, operandTwo) {
-  return calculateData.splice(0, 3, operandOne + operandTwo);
+  return operandOne + operandTwo;
 }
 
 /**
@@ -108,7 +132,7 @@ function resultPlus(operandOne, operandTwo) {
  */
 function resultMinus(operandOne, operandTwo) {
   // вычитание
-  return calculateData.splice(0, 3, operandOne - operandTwo);
+  return operandOne - operandTwo;
 }
 
 /**
@@ -118,7 +142,7 @@ function resultMinus(operandOne, operandTwo) {
  * @param {Number} operandTwo
  */
 function resultMultiply(operandOne, operandTwo) {
-  return calculateData.splice(0, 3, operandOne * operandTwo);
+  return operandOne * operandTwo;
 }
 
 /**
@@ -129,7 +153,7 @@ function resultMultiply(operandOne, operandTwo) {
  */
 function resultDivide(operandOne, operandTwo) {
   // деление
-  return calculateData.splice(0, 3, operandOne / operandTwo);
+  return operandOne / operandTwo;
 }
 
 /**
@@ -162,7 +186,7 @@ function executeOperation() {
   if (showOnDisplay.innerHTML.includes("+") === true) {
     plusPercentageAmount();
   }
-  if (showOnDisplay.innerHTML.includes("*") === true) {
+  if (showOnDisplay.innerHTML.includes("x") === true) {
     multiplyPercentageAmount();
   }
   if (showOnDisplay.innerHTML.includes("/") === true) {
@@ -210,8 +234,8 @@ function plusPercentageAmount() {
  */
 function multiplyPercentageAmount() {
   const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
-  const firstOperatorCharacter = showOnDisplay.innerHTML.includes("*");
-  const indexPercentage = showOnDisplay.innerHTML.indexOf("*");
+  const firstOperatorCharacter = showOnDisplay.innerHTML.includes("x");
+  const indexPercentage = showOnDisplay.innerHTML.indexOf("x");
   const baseValue = Number(deleteChars.substring(0, indexPercentage));
   const percentValue = Number(deleteChars.substring(indexPercentage + 1));
 
