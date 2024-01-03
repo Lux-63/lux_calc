@@ -44,29 +44,8 @@ function showOnDisplayChars() {
     }
     showOnDisplay.innerHTML = result.join("");
   }
-
-  /*let i = 0;
-    let res = ''
-    while (calculateData.length >i) {
-        
-        i++
-    }
-    showOnDisplay.innerHTML = res;*/
 }
 
-/*function separationObjects(n) {
-    i = addCharToDisplay;
-    const lastChar = showOnDisplay.innerHTML[showOnDisplay.innerHTML.length -1];
-    const firstOperatorCharacter = specialChars.includes(lastChar); 
-    const secondOperatorCharacter = specialChars.includes(i);
-        if (firstOperatorCharacter === true && secondOperatorCharacter === true) {
-            
-        calculateData = showOnDisplay.innerHTML.slice(0, -1) + i;
-        } else {
-            calculateData += i;
-        }
-        console.log(calculateData);
-}*/
 
 function clearInputField() {
   showOnDisplay.innerHTML = 0;
@@ -101,13 +80,13 @@ function getResult() {
 
 function defineOperator(operandOne, operator, operandTwo) {
   if (operator == "+") {
-    resultPlus(operandOne, operandTwo);
+    return resultPlus(operandOne, operandTwo);
   } else if (operator == "-") {
-    resultMinus(operandOne, operandTwo);
+    return resultMinus(operandOne, operandTwo);
   } else if (operator == "/") {
-    resultDivide(operandOne, operandTwo);
+    return resultDivide(operandOne, operandTwo);
   } else if (operator == "*") {
-    resultMultiply(operandOne, operandTwo);
+    return resultMultiply(operandOne, operandTwo);
   }
 }
 
@@ -118,8 +97,7 @@ function defineOperator(operandOne, operator, operandTwo) {
  * @param {Number} operandTwo
  */
 function resultPlus(operandOne, operandTwo) {
-  calculateData.splice(0, 3, operandOne + operandTwo);
-  getResult();
+  return calculateData.splice(0, 3, operandOne + operandTwo);
 }
 
 /**
@@ -130,8 +108,7 @@ function resultPlus(operandOne, operandTwo) {
  */
 function resultMinus(operandOne, operandTwo) {
   // вычитание
-  calculateData.splice(0, 3, operandOne - operandTwo);
-  getResult();
+  return calculateData.splice(0, 3, operandOne - operandTwo);
 }
 
 /**
@@ -141,8 +118,7 @@ function resultMinus(operandOne, operandTwo) {
  * @param {Number} operandTwo
  */
 function resultMultiply(operandOne, operandTwo) {
-  calculateData.splice(0, 3, operandOne * operandTwo);
-  getResult();
+  return calculateData.splice(0, 3, operandOne * operandTwo);
 }
 
 /**
@@ -153,8 +129,7 @@ function resultMultiply(operandOne, operandTwo) {
  */
 function resultDivide(operandOne, operandTwo) {
   // деление
-  calculateData.splice(0, 3, operandOne / operandTwo);
-  getResult();
+  return calculateData.splice(0, 3, operandOne / operandTwo);
 }
 
 /**
