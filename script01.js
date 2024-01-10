@@ -4,6 +4,14 @@ const numberEntry = "1234567890";
 let calculateData = [];
 showOnDisplay.innerHTML = 0;
 
+function handleKey(event) {
+  const numbersKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "+", "-",];
+  if (numbersKeys.includes(event.key)) {
+    addCharToDisplay(event.key)
+  }
+  console.log(event)
+}
+
 /**
  * Замена оператора на новый нажатый оператор.
  * @param {String} currentChar
@@ -97,10 +105,10 @@ function getResult() {
 
 /**
  * патерн стратегия
- * @param {*} operandOne
- * @param {*} operator
- * @param {*} operandTwo
- * @returns
+ * @param {Number} operandOne
+ * @param {String} operator
+ * @param {Number} operandTwo
+ * @returns {Number}
  */
 function defineOperator(operandOne, operator, operandTwo) {
   if (operator == "+") {
@@ -119,19 +127,20 @@ function defineOperator(operandOne, operator, operandTwo) {
  * @param {Number} operandOne
  * @param {String} operator
  * @param {Number} operandTwo
+ * @returns {Number}
  */
 function resultPlus(operandOne, operandTwo) {
   return operandOne + operandTwo;
 }
 
 /**
- * Вычмтание
+ * Вычитание
  * @param {Number} operandOne
  * @param {String} operator
  * @param {Number} operandTwo
+ * @returns {Number}
  */
 function resultMinus(operandOne, operandTwo) {
-  // вычитание
   return operandOne - operandTwo;
 }
 
@@ -140,6 +149,7 @@ function resultMinus(operandOne, operandTwo) {
  * @param {Number} operandOne
  * @param {String} operator
  * @param {Number} operandTwo
+ * @returns {Number}
  */
 function resultMultiply(operandOne, operandTwo) {
   return operandOne * operandTwo;
@@ -150,9 +160,9 @@ function resultMultiply(operandOne, operandTwo) {
  * @param {Number} operandOne
  * @param {string} operator
  * @param {Number} operandTwo
+ * @returns {Number}
  */
 function resultDivide(operandOne, operandTwo) {
-  // деление
   return operandOne / operandTwo;
 }
 
@@ -204,7 +214,6 @@ function minusPercentageAmount() {
   const indexPercentage = deleteChars.indexOf("-");
   const baseValue = Number(deleteChars.substring(0, indexPercentage));
   const percentValue = Number(deleteChars.substring(indexPercentage + 1));
-  //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
 
   if (firstOperatorCharacter === true) {
     return eval(baseValue - (baseValue / 100) * percentValue);
