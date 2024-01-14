@@ -4,13 +4,57 @@ const numberEntry = "1234567890";
 let calculateData = [];
 showOnDisplay.innerHTML = 0;
 
+
+/**
+ * добавление значения по ключам
+ * @param {*} event 
+ */
 function handleKey(event) {
-  const numbersKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "+", "-",];
-  if (numbersKeys.includes(event.key)) {
-    addCharToDisplay(event.key)
+  const numbersKey = {
+    96: 0,
+    97: 1,
+    98: 2,
+    99: 3,
+    100: 4,
+    101: 5,
+    102: 6,
+    103: 7,
+    104: 8,
+    105: 9,
+    48: 0,
+    49: 1,
+    50: 2,
+    51: 3,
+    52: 4,
+    53: 5,
+    54: 6,
+    55: 7,
+    56: 8,
+    57: 9,
+    111: "/",
+    106: "x",
+    109: "-",
+    107: "+",
   }
-  console.log(event)
+    
+  addCharToDisplay(numbersKey[event.keyCode])
+  
+  console.log(event.keyCode, event.code,)
 }
+
+
+/**   Numpad0
+ * события с клавиатуры
+ * @param {*} event 
+ *
+function handleKey(event) {
+  const numbersKeys = ["96", "97", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "+", "-",];
+  if (numbersKeys.includes(event.code)) {
+    addCharToDisplay(event.code)
+  }
+  console.log(event.code)
+}/*
+
 
 /**
  * Замена оператора на новый нажатый оператор.
