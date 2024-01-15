@@ -35,11 +35,24 @@ function handleKey(event) {
     106: "x",
     109: "-",
     107: "+",
-  }
+    13: getResult,
+    27: clearInputField,
+    8: removeLastCharacter,
     
-  addCharToDisplay(numbersKey[event.keyCode])
+  };
+
+  if (event.keyCode == 13 || event.keyCode == 27 || event.keyCode == 8) {
+    numbersKey[event.keyCode]();
+  } else {
+    addCharToDisplay(numbersKey[event.keyCode])
+  }
+    //numbersKey[event.keyCode];
+
   
-  console.log(event.keyCode, event.code,)
+
+  //addCharToDisplay(numbersKey[event.keyCode]);
+  
+  console.log(event.keyCode, event.code,);
 }
 
 
