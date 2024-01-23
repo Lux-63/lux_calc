@@ -11,62 +11,39 @@ showOnDisplay.innerHTML = 0;
  */
 function handleKey(event) {
   const numbersKey = {
-    96: 0,
-    97: 1,
-    98: 2,
-    99: 3,
-    100: 4,
-    101: 5,
-    102: 6,
-    103: 7,
-    104: 8,
-    105: 9,
-    48: 0,
-    49: 1,
-    50: 2,
-    51: 3,
-    52: 4,
-    53: 5,
-    54: 6,
-    55: 7,
-    56: 8,
-    57: 9,
-    111: "/",
-    106: "x",
-    109: "-",
-    107: "+",
+    96: () => {addCharToDisplay(0)},
+    97: () => {addCharToDisplay(1)},
+    98: () => {addCharToDisplay(2)},
+    99: () => {addCharToDisplay(3)},
+    100: () => {addCharToDisplay(4)},
+    101: () => {addCharToDisplay(5)},
+    102: () => {addCharToDisplay(6)},
+    103: () => {addCharToDisplay(7)},
+    104: () => {addCharToDisplay(8)},
+    105: () => {addCharToDisplay(9)},
+    48: () => {addCharToDisplay(0)},
+    49: () => {addCharToDisplay(1)},
+    50: () => {addCharToDisplay(2)},
+    51: () => {addCharToDisplay(3)},
+    52: () => {addCharToDisplay(4)},
+    53: () => {addCharToDisplay(5)},
+    54: () => {addCharToDisplay(6)},
+    55: () => {addCharToDisplay(7)},
+    56: () => {addCharToDisplay(8)},
+    57: () => {addCharToDisplay(9)},
+    111: () => {addCharToDisplay("/")},
+    106: () => {addCharToDisplay("x")},
+    109: () => {addCharToDisplay("-")},
+    107: () => {addCharToDisplay("+")},
+    110: () => {addCharToDisplay(".")},
     13: getResult,
     27: clearInputField,
     8: removeLastCharacter,
-    
   };
-
-  if (event.keyCode == 13 || event.keyCode == 27 || event.keyCode == 8) {
     numbersKey[event.keyCode]();
-  } else {
-    addCharToDisplay(numbersKey[event.keyCode])
-  }
-    //numbersKey[event.keyCode];
-
-  
-
-  //addCharToDisplay(numbersKey[event.keyCode]);
-  
   console.log(event.keyCode, event.code,);
 }
 
-
-/**   Numpad0
- * события с клавиатуры
- * @param {*} event 
- *
-function handleKey(event) {
-  const numbersKeys = ["96", "97", "2", "3", "4", "5", "6", "7", "8", "9", "/", "*", "+", "-",];
-  if (numbersKeys.includes(event.code)) {
-    addCharToDisplay(event.code)
-  }
-  console.log(event.code)
-}/*
 
 
 /**
@@ -83,7 +60,7 @@ function addCharToDisplay(currentChar) {
       calculateData.push(Number(currentChar));
       console.log(calculateData);
     } else {
-      const strChars = String(lastChar) + String(currentChar);
+      strChars = String(lastChar) + String(currentChar);
       console.log(strChars);
 
       calculateData[calculateData.length - 1] = Number(strChars);
