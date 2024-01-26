@@ -1,50 +1,107 @@
-﻿const showOnDisplay = document.querySelector(".display");
-const specialChars = "/x-+%.";
-const numberEntry = "1234567890";
-let calculateData = [];
-showOnDisplay.innerHTML = 0;
+﻿document.addEventListener("keydown", handleKey);
 
+const showOnDisplay = document.querySelector(".display");
+//спеесимволы для проверки операторов
+const specialChars = "/x-+%.";
+
+const numberEntry = "1234567890";
+
+let calculateData = [];
+//отображение нуля, пока нет ввода
+showOnDisplay.innerHTML = 0;
+// проверка последовательности решения
+const priorityOperators = ["/", "x", "-", "+"]; 
+
+const numbersKey = {
+  96: () => {
+    addCharToDisplay(0);
+  },
+  97: () => {
+    addCharToDisplay(1);
+  },
+  98: () => {
+    addCharToDisplay(2);
+  },
+  99: () => {
+    addCharToDisplay(3);
+  },
+  100: () => {
+    addCharToDisplay(4);
+  },
+  101: () => {
+    addCharToDisplay(5);
+  },
+  102: () => {
+    addCharToDisplay(6);
+  },
+  103: () => {
+    addCharToDisplay(7);
+  },
+  104: () => {
+    addCharToDisplay(8);
+  },
+  105: () => {
+    addCharToDisplay(9);
+  },
+  48: () => {
+    addCharToDisplay(0);
+  },
+  49: () => {
+    addCharToDisplay(1);
+  },
+  50: () => {
+    addCharToDisplay(2);
+  },
+  51: () => {
+    addCharToDisplay(3);
+  },
+  52: () => {
+    addCharToDisplay(4);
+  },
+  53: () => {
+    addCharToDisplay(5);
+  },
+  54: () => {
+    addCharToDisplay(6);
+  },
+  55: () => {
+    addCharToDisplay(7);
+  },
+  56: () => {
+    addCharToDisplay(8);
+  },
+  57: () => {
+    addCharToDisplay(9);
+  },
+  111: () => {
+    addCharToDisplay("/");
+  },
+  106: () => {
+    addCharToDisplay("x");
+  },
+  109: () => {
+    addCharToDisplay("-");
+  },
+  107: () => {
+    addCharToDisplay("+");
+  },
+  110: () => {
+    addCharToDisplay(".");
+  },
+  13: getResult,
+  27: clearInputField,
+  8: removeLastCharacter,
+};
 
 /**
  * добавление значения по ключам
- * @param {*} event 
+ * @param {*} event
  */
 function handleKey(event) {
-  const numbersKey = {
-    96: () => {addCharToDisplay(0)},
-    97: () => {addCharToDisplay(1)},
-    98: () => {addCharToDisplay(2)},
-    99: () => {addCharToDisplay(3)},
-    100: () => {addCharToDisplay(4)},
-    101: () => {addCharToDisplay(5)},
-    102: () => {addCharToDisplay(6)},
-    103: () => {addCharToDisplay(7)},
-    104: () => {addCharToDisplay(8)},
-    105: () => {addCharToDisplay(9)},
-    48: () => {addCharToDisplay(0)},
-    49: () => {addCharToDisplay(1)},
-    50: () => {addCharToDisplay(2)},
-    51: () => {addCharToDisplay(3)},
-    52: () => {addCharToDisplay(4)},
-    53: () => {addCharToDisplay(5)},
-    54: () => {addCharToDisplay(6)},
-    55: () => {addCharToDisplay(7)},
-    56: () => {addCharToDisplay(8)},
-    57: () => {addCharToDisplay(9)},
-    111: () => {addCharToDisplay("/")},
-    106: () => {addCharToDisplay("x")},
-    109: () => {addCharToDisplay("-")},
-    107: () => {addCharToDisplay("+")},
-    110: () => {addCharToDisplay(".")},
-    13: getResult,
-    27: clearInputField,
-    8: removeLastCharacter,
-  };
-    numbersKey[event.keyCode]();
-  console.log(event.keyCode, event.code,);
+  event.preventDefault();
+  numbersKey[event.keyCode]();
+  console.log(event.keyCode, event.code);
 }
-
-
 
 /**
  * Замена оператора на новый нажатый оператор.
@@ -95,7 +152,6 @@ function clearInputField() {
 }
 
 function getPriorityOperatorIndex() {
-  const priorityOperators = ["/", "x", "-", "+"];
   for (let operator of priorityOperators) {
     let priorityOperatorIndex = calculateData.indexOf(operator);
     if (priorityOperatorIndex !== -1) {
@@ -117,11 +173,12 @@ function getResult() {
   let priorityOperatorIndex = getPriorityOperatorIndex();
   if (priorityOperatorIndex === null) {
     console.log("error");
+    showOnDisplay.innerHTML = "error";
     return;
   }
-  
+
   let operandOne = calculateData[priorityOperatorIndex - 1];
-  let operandTwo = calculateData[priorityOperatorIndex +1];
+  let operandTwo = calculateData[priorityOperatorIndex + 1];
 
   if (isFinite(operandOne) && isFinite(operandTwo)) {
     let resultOperation = defineOperator(
@@ -132,7 +189,7 @@ function getResult() {
 
     calculateData.splice(priorityOperatorIndex - 1, 3, resultOperation);
     getResult();
-  
+
     console.log(calculateData);
   }
 }
@@ -265,7 +322,6 @@ function plusPercentageAmount() {
   const baseValue = Number(deleteChars.substring(0, indexPercentage));
   const percentValue = Number(deleteChars.substring(indexPercentage + 1));
 
-  //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
   if (firstOperatorCharacter === true) {
     return eval((baseValue / 100) * percentValue + baseValue);
   }
@@ -282,7 +338,6 @@ function multiplyPercentageAmount() {
   const baseValue = Number(deleteChars.substring(0, indexPercentage));
   const percentValue = Number(deleteChars.substring(indexPercentage + 1));
 
-  //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
   if (firstOperatorCharacter === true) {
     return eval((baseValue / 100) * percentValue * baseValue);
   }
@@ -300,7 +355,6 @@ function dividePercentageAmount() {
   const baseValue = Number(deleteChars.substring(0, indexPercentage));
   const percentValue = Number(deleteChars.substring(indexPercentage + 1));
 
-  //console.log(firstOperatorCharacter, indexPercentage, baseValue, percentValue)
   if (firstOperatorCharacter === true) {
     return eval(baseValue / ((baseValue / 100) * percentValue));
   }
@@ -324,4 +378,6 @@ function dividePercentageAmount() {
 
 при нажатии на минус перед числом, все ломается. надо сделать что бы если 0 индекс это -, 
 то число делать отрицательным
+
+автофокусировоание на дисплее
 */
