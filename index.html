@@ -1,46 +1,87 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <title>А вот и калькулятор</title>
-    <link rel="icon" href="https://icon2.cleanpng.com/20180411/ise/kisspng-credit-card-automated-teller-machine-payment-termi-calculator-5aceb6b416e947.9896627815234966280939.jpg" type="image/jpg" size="64x64">
-    <link rel="stylesheet" href="css01.css">
-</head>
-<body> 
+    <link
+      rel="icon"
+      href="https://icon2.cleanpng.com/20180411/ise/kisspng-credit-card-automated-teller-machine-payment-termi-calculator-5aceb6b416e947.9896627815234966280939.jpg"
+      type="image/jpg"
+      size="64x64"
+    />
+    <link rel="stylesheet" href="css01.css" />
+  </head>
+  <body>
     <div class="frame">
-        <div class="display"></div>
-            <div>
-                <button type="button" class="button" onclick="clearInputField()">AC</button>
-                <button type="button" class="button" onclick="removeLastCharacter()">&#8592;</button>
-                <button type="button" class="button" onclick="addCharToDisplay(NaN)">+/-</button>
-                <button type="button" class="button" onclick="addCharToDisplay('/')">/</button>
-            </div>  
-            <div>
-                <button type="button" class="button" onclick="addCharToDisplay(7)">7</button>
-                <button type="button" class="button" onclick="addCharToDisplay(8)">8</button>
-                <button type="button" class="button" onclick="addCharToDisplay(9)">9</button>
-                <button type="button" class="button" onclick="addCharToDisplay('x')">x</button>
-            </div>   
-            <div>   
-                <button type="button" class="button" onclick="addCharToDisplay(4)">4</button>
-                <button type="button" class="button" onclick="addCharToDisplay(5)">5</button>
-                <button type="button" class="button" onclick="addCharToDisplay(6)">6</button>
-                <button type="button" class="button" onclick="addCharToDisplay('-')">-</button>
-            </div>
-            <div>
-                <button type="button" class="button" onclick="addCharToDisplay(1)">1</button>
-                <button type="button" class="button" onclick="addCharToDisplay(2)">2</button>
-                <button type="button" class="button" onclick="addCharToDisplay(3)">3</button>
-                <button type="button" class="button" onclick="addCharToDisplay('+')">+</button>   
-            </div>
-            <div>
-                <button type="button" class="button" onclick="addCharToDisplay('%')">%</button>
-                <button type="button" class="button" onclick="addCharToDisplay(0)">0</button>
-                <button type="button" class="button" onclick="addCharToDisplay('.')">.</button>
-                <button type="button" class="button" onclick="getResult()">=</button>
-            </div>
+      <div class="display"></div>
+      <div class="row">
+        <button type="button" class="button" onclick="clearInputField()">
+          AC
+        </button>
+        <button type="button" class="button" onclick="removeLastCharacter()">
+          &#8592;
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(NaN)">
+          +/-
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay('/')">
+          /
+        </button>
+      </div>
+      <div class="row">
+        <button type="button" class="button" onclick="addCharToDisplay(7)">
+          7
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(8)">
+          8
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(9)">
+          9
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay('x')">
+          x
+        </button>
+      </div>
+      <div class="row">
+        <button type="button" class="button" onclick="addCharToDisplay(4)">
+          4
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(5)">
+          5
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(6)">
+          6
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay('-')">
+          -
+        </button>
+      </div>
+      <div class="row">
+        <button type="button" class="button" onclick="addCharToDisplay(1)">
+          1
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(2)">
+          2
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(3)">
+          3
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay('+')">
+          +
+        </button>
+      </div>
+      <div class="row">
+        <button type="button" class="button" onclick="addCharToDisplay('%')">
+          %
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay(0)">
+          0
+        </button>
+        <button type="button" class="button" onclick="addCharToDisplay('.')">
+          .
+        </button>
+        <button type="button" class="button" onclick="getResult()">=</button>
+      </div>
     </div>
-</body>
-
-<script src="script01.js"></script>
-
+    <script src="script01.js"></script>
+  </body>
 </html>

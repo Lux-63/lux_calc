@@ -1,6 +1,6 @@
 ﻿document.addEventListener("keydown", handleKey);
-
 const showOnDisplay = document.querySelector(".display");
+  showOnDisplay.focus();
 //спеесимволы для проверки операторов
 const specialChars = "/x-+%.";
 
@@ -10,7 +10,7 @@ let calculateData = [];
 //отображение нуля, пока нет ввода
 showOnDisplay.innerHTML = 0;
 // проверка последовательности решения
-const priorityOperators = ["/", "x", "-", "+"]; 
+const priorityOperators = [".", "/", "x", "-", "+"]; 
 
 const numbersKey = {
   96: () => {
@@ -210,7 +210,18 @@ function defineOperator(operandOne, operator, operandTwo) {
     return resultDivide(operandOne, operandTwo);
   } else if (operator == "x") {
     return resultMultiply(operandOne, operandTwo);
+  } else if (operator == ".") {
+    return fractions(operandOne, operandTwo);
   }
+}
+/**
+ * сделать дробные числа
+ * @param {Number} operandOne 
+ * @param {Number} operandTwo 
+ * @returns 
+ */
+function fractions(operandOne, operandTwo) {
+  return Number(String(operandOne) + "." + String(operandTwo));
 }
 
 /**
@@ -363,12 +374,9 @@ function dividePercentageAmount() {
 /*
 баги, которые нашел: 
 
-если введен только один символ и его удалить с помощью backspace, то этот сивол удаляется
-только в массиве, а в дисплее он остается
 
 переделать процент
-
-избавиться от eval
+точка
 
 отображение на дисплее скоректировать, что бы большое количество символов  
 было внутри рамок дисплея

@@ -6,6 +6,11 @@
     margin: 4px;
 }
 
+.row {
+    padding: 0px;
+    margin: 0px;
+}
+
 .frame {
     height: 400px;
     width: 300px;
