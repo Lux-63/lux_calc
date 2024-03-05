@@ -109,6 +109,7 @@ function handleKey(event) {
  */
 function addCharToDisplay(currentChar) {
   const lastChar = calculateData[calculateData.length - 1];
+  const penultimateChar = calculateData[calculateData.length - 2];
   const isLastCharSpecial = specialChars.includes(lastChar);
   const isCurrentCharSpecial = specialChars.includes(currentChar);
 
@@ -119,9 +120,10 @@ function addCharToDisplay(currentChar) {
     } else {
       strChars = String(lastChar) + String(currentChar);
       console.log(strChars);
-
       calculateData[calculateData.length - 1] = Number(strChars);
     }
+  } else if (currentChar === "." && penultimateChar === ".") {
+    alert("NaN");
   } else if (isLastCharSpecial === false && isCurrentCharSpecial === true) {
     calculateData.push(currentChar);
   } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
@@ -174,6 +176,7 @@ function getResult() {
   if (priorityOperatorIndex === null) {
     console.log("error");
     showOnDisplay.innerHTML = "error";
+    
     return;
   }
 
