@@ -123,10 +123,15 @@ function addCharToDisplay(currentChar) {
       calculateData[calculateData.length - 1] = Number(strChars);
     }
   } else if (currentChar === "." && penultimateChar === ".") {
-    alert("NaN");
+    return;
+    //проверка поставлена ли дробь или нет
   } else if (isLastCharSpecial === false && isCurrentCharSpecial === true) {
     calculateData.push(currentChar);
   } else if (isLastCharSpecial === true && isCurrentCharSpecial === true) {
+    if (currentChar === "." && calculateData[calculateData.length - 3] === ".") {
+      //тут если эту проверку не сделать то плюс можно заменить точкой
+      return;
+    }
     calculateData.splice(-1, 1, currentChar);
   } else if (isLastCharSpecial === true && isCurrentCharSpecial === false) {
     calculateData.push(currentChar);
