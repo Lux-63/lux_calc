@@ -94,6 +94,9 @@ const numbersKey = {
   110: () => {
     addCharToDisplay(".");
   },
+  108: () => {
+    addCharToDisplay(".");
+  },
   13: getResult,
   27: clearInputField,
   8: removeLastCharacter,
