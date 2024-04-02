@@ -208,13 +208,6 @@ function getResult() {
 
   //проверка %
   if (calculateData.includes("%") === true) {
-    //если вдруг числа не целые
-    if (calculateData[getPriorityOperatorIndex()] === ".") {
-      return fractions(operandOne, operandTwo);
-
-      calculateData.splice(priorityOperatorIndex - 1, 3, resultOperation);
-       getResult();
-    }
     //удаление знака % и передача трех параметров в функцию процента
     calculateData.pop();
     executeOperation(operandOne,
