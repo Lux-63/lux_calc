@@ -1,17 +1,23 @@
 ﻿document.addEventListener("keydown", handleKey);
 const showOnDisplay = document.querySelector(".display");
-  showOnDisplay.focus();
+showOnDisplay.focus();
+
+//основной массив
+let calculateData = [];
 //спеесимволы для проверки операторов
 const specialChars = "/x-+%.";
 
 const numberEntry = "1234567890";
 
-let calculateData = [];
+
 //отображение нуля, пока нет ввода
 showOnDisplay.innerHTML = 0;
 // проверка последовательности решения
-const priorityOperators = [".", "/", "x", "-", "+"]; 
+const priorityOperators = [".", "/", "x", "-", "+"];
 
+/**
+ * перехват клавиатуры
+ */
 const numbersKey = {
   96: () => {
     addCharToDisplay(0);
@@ -98,9 +104,10 @@ const numbersKey = {
  * @param {*} event
  */
 function handleKey(event) {
+  console.log(event.keyCode, event.code);
   event.preventDefault();
   numbersKey[event.keyCode]();
-  console.log(event.keyCode, event.code);
+  
 }
 
 /**
@@ -151,13 +158,18 @@ function showOnDisplayChars() {
     showOnDisplay.innerHTML = result.join("");
   }
 }
-
+/**
+ * очистка значения
+ */
 function clearInputField() {
   showOnDisplay.innerHTML = 0;
   calculateData = [];
   console.log(calculateData);
 }
-
+/**
+ *
+ * @returns
+ */
 function getPriorityOperatorIndex() {
   for (let operator of priorityOperators) {
     let priorityOperatorIndex = calculateData.indexOf(operator);
@@ -176,18 +188,39 @@ function getResult() {
     showOnDisplay.innerHTML = calculateData[0];
     return;
   }
-
+  /*  переменная для определения приоритетного оператора. нужна что бы проще было понять.
+  в вычислении процента использую operator, так как эта переменная 
+  не глобальная. Стоит ли переменную сделать глобальной?  */
   let priorityOperatorIndex = getPriorityOperatorIndex();
+
+    /*переменные операндов. вынести в глобальные переменные, что бы не писать 
+  их в функции вычисления на %. Спорный вопрос, надо ли так делать?*/
+  let operandOne = calculateData[priorityOperatorIndex - 1];
+  let operandTwo = calculateData[priorityOperatorIndex + 1];
   if (priorityOperatorIndex === null) {
     console.log("error");
     showOnDisplay.innerHTML = "error";
-    
     return;
   }
 
-  let operandOne = calculateData[priorityOperatorIndex - 1];
-  let operandTwo = calculateData[priorityOperatorIndex + 1];
+  //проверка %
+  if (calculateData.includes("%") === true) {
+    //если вдруг числа не целые
+    if (calculateData[getPriorityOperatorIndex()] === ".") {
+      return fractions(operandOne, operandTwo);
 
+      calculateData.splice(priorityOperatorIndex - 1, 3, resultOperation);
+       getResult();
+    }
+    //удаление знака % и передача трех параметров в функцию процента
+    calculateData.pop();
+    executeOperation(operandOne,
+      calculateData[priorityOperatorIndex],
+      operandTwo)
+    console.log("передача в функции %", calculateData)
+  }
+
+  // взятие чисел для вычисления результата, в зависимости от приоритетного оператора
   if (isFinite(operandOne) && isFinite(operandTwo)) {
     let resultOperation = defineOperator(
       operandOne,
@@ -224,9 +257,9 @@ function defineOperator(operandOne, operator, operandTwo) {
 }
 /**
  * сделать дробные числа
- * @param {Number} operandOne 
- * @param {Number} operandTwo 
- * @returns 
+ * @param {Number} operandOne
+ * @param {Number} operandTwo
+ * @returns
  */
 function fractions(operandOne, operandTwo) {
   return Number(String(operandOne) + "." + String(operandTwo));
@@ -299,18 +332,18 @@ function removeLastCharacter() {
 /**
  * Код с процентом, проверка что делать с процентом (- + / *).
  */
-function executeOperation() {
-  if (showOnDisplay.innerHTML.includes("-") === true) {
-    minusPercentageAmount();
+function executeOperation(operandOne, operator, operandTwo) {
+  if (operator === "-") {
+    minusPercentageAmount(operandOne, operandTwo);
   }
-  if (showOnDisplay.innerHTML.includes("+") === true) {
-    plusPercentageAmount();
+  if (operator === "+") {
+    plusPercentageAmount(operandOne, operandTwo);
   }
-  if (showOnDisplay.innerHTML.includes("x") === true) {
-    multiplyPercentageAmount();
+  if (operator === "x") {
+    multiplyPercentageAmount(operandOne, operandTwo);
   }
-  if (showOnDisplay.innerHTML.includes("/") === true) {
-    dividePercentageAmount();
+  if (operator === "/") {
+    dividePercentageAmount(operandOne, operandTwo);
   }
 }
 
@@ -318,65 +351,32 @@ function executeOperation() {
  * Отнимать процент.
  * @returns {Number}
  */
-function minusPercentageAmount() {
-  const deleteChars = calculateData.pop();
-  const firstOperatorCharacter = deleteChars.includes("-");
-  const indexPercentage = deleteChars.indexOf("-");
-  const baseValue = Number(deleteChars.substring(0, indexPercentage));
-  const percentValue = Number(deleteChars.substring(indexPercentage + 1));
-
-  if (firstOperatorCharacter === true) {
-    return eval(baseValue - (baseValue / 100) * percentValue);
+function minusPercentageAmount(baseValue, percentValue) {
+    return (baseValue - (baseValue / 100) * percentValue);
   }
-}
 
 /**
  * Складывать процент.
  * @returns {Number}
  */
-function plusPercentageAmount() {
-  const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
-  const firstOperatorCharacter = showOnDisplay.innerHTML.includes("+");
-  const indexPercentage = showOnDisplay.innerHTML.indexOf("+");
-  const baseValue = Number(deleteChars.substring(0, indexPercentage));
-  const percentValue = Number(deleteChars.substring(indexPercentage + 1));
-
-  if (firstOperatorCharacter === true) {
-    return eval((baseValue / 100) * percentValue + baseValue);
-  }
+function plusPercentageAmount(baseValue, percentValue) {
+  return ((baseValue / 100) * percentValue + baseValue);
 }
 
 /**
  * Умножать процент.
  * @returns {Number}
  */
-function multiplyPercentageAmount() {
-  const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
-  const firstOperatorCharacter = showOnDisplay.innerHTML.includes("x");
-  const indexPercentage = showOnDisplay.innerHTML.indexOf("x");
-  const baseValue = Number(deleteChars.substring(0, indexPercentage));
-  const percentValue = Number(deleteChars.substring(indexPercentage + 1));
-
-  if (firstOperatorCharacter === true) {
-    return eval((baseValue / 100) * percentValue * baseValue);
-  }
+function multiplyPercentageAmount(baseValue, percentValue) {
+  return ((baseValue / 100) * percentValue * baseValue);
 }
 
 /**
  * Делить процент.
  * @returns {Number}
  */
-function dividePercentageAmount() {
-  //делить процент
-  const deleteChars = showOnDisplay.innerHTML.slice(0, -1);
-  const firstOperatorCharacter = showOnDisplay.innerHTML.includes("/");
-  const indexPercentage = showOnDisplay.innerHTML.indexOf("/");
-  const baseValue = Number(deleteChars.substring(0, indexPercentage));
-  const percentValue = Number(deleteChars.substring(indexPercentage + 1));
-
-  if (firstOperatorCharacter === true) {
-    return eval(baseValue / ((baseValue / 100) * percentValue));
-  }
+function dividePercentageAmount(baseValue, percentValue) {
+  return (baseValue / ((baseValue / 100) * percentValue));
 }
 
 /*
@@ -384,7 +384,6 @@ function dividePercentageAmount() {
 
 
 переделать процент
-точка
 
 отображение на дисплее скоректировать, что бы большое количество символов  
 было внутри рамок дисплея
