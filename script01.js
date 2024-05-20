@@ -7,8 +7,6 @@ let calculateData = [];
 //спец.символы для проверки операторов.
 const specialChars = "/x-+%.";
 
-const numberEntry = "1234567890";
-
 //отображение нуля, пока нет ввода.
 showOnDisplay.innerHTML = 0;
 // проверка последовательности решения.
@@ -121,6 +119,17 @@ function addCharToDisplay(currentChar) {
   const isLastCharSpecial = specialChars.includes(lastChar);
   const isCurrentCharSpecial = specialChars.includes(currentChar);
 
+  if (calculateData[0] === "-" && isCurrentCharSpecial === false) {
+    calculateData.splice(0,1, -currentChar)
+    showOnDisplayChars();
+    return;
+  }
+  if (currentChar === "negative") {
+    calculateData.splice(-1, 1, Number(-calculateData.slice(-1)));
+    showOnDisplayChars();
+    return;
+  }
+
   if (isLastCharSpecial === false && isCurrentCharSpecial === false) {
     if (lastChar === undefined) {
       calculateData.push(Number(currentChar));
@@ -172,7 +181,6 @@ function clearInputField() {
  * @returns
  */
 function getPriorityOperatorIndex() {
-  //делается на нулевой индекс. желательно что бы поиск начинался с 1 индекса
   for (let operator of priorityOperators) {
     let priorityOperatorIndex = calculateData.indexOf(operator);
     if (priorityOperatorIndex !== -1) {
@@ -191,8 +199,7 @@ function getResult() {
     return;
   }
   /*  переменная для определения приоритетного оператора. нужна что бы проще было понять.
-  в вычислении процента использую operator, так как эта переменная 
-  не глобальная. Стоит ли переменную сделать глобальной?  */
+  в вычислении процента использую operator. */
   let priorityOperatorIndex = getPriorityOperatorIndex();
 
   /*переменные операндов. вынести в глобальные переменные, что бы не писать 
@@ -204,7 +211,6 @@ function getResult() {
     showOnDisplay.innerHTML = "error";
     return;
   }
-
   //проверка %
   if (calculateData.includes("%") === true) {
     //удаление знака % и передача трех параметров в функцию процента
@@ -212,7 +218,7 @@ function getResult() {
     executeOperation(operandOne, calculateData[priorityOperatorIndex], operandTwo);
     console.log("передача в функции %", calculateData);
   }
-  // по идее функция после процента продолжается работать дальше. ретёрн нужны или типо того или елси иф
+
   // взятие чисел для вычисления результата, в зависимости от приоритетного оператора
   if (isFinite(operandOne) && isFinite(operandTwo)) {
     let resultOperation = defineOperator(
@@ -248,6 +254,7 @@ function defineOperator(operandOne, operator, operandTwo) {
     return fractions(operandOne, operandTwo);
   }
 }
+
 /**
  * сделать дробные числа
  * @param {Number} operandOne
@@ -257,6 +264,7 @@ function defineOperator(operandOne, operator, operandTwo) {
 function fractions(operandOne, operandTwo) {
   return Number(String(operandOne) + "." + String(operandTwo));
 }
+
 
 /**
  * Сложение.
