@@ -1,9 +1,6 @@
- .button {
+.button {
     height: 60px;
     width: 60px;
-    font-weight: 500;
-    font-size: 25px;
-    margin: 4px;
 }
 
 .row_1 {
@@ -21,7 +18,7 @@
     border: 5px double;
 }
 .display_con {
-    width: 312px;
+    width: 313px;
     height: 360px;
  } 
 
