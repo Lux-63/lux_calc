@@ -41,49 +41,67 @@
       </div>
     </nav>
 
+    <div class="col-md-5 col-lg-4 mx-auto border border-dark border-2 rounded-3">
 
-    <div class="display_con position-absolute top-50 start-50 translate-middle border border-dark border-2 rounded-3">
-
-      <div class="display container border-bottom border-dark border-2 text-end fs-1 overflow-hidden"></div>
-      
       <div class="container">
-        
-        <div class="row justify-content-center">
-          <div class="col-12 align-items-center">
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="clearInputField()">AC</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="removeLastCharacter()">&#8592;</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay('negative')">+/-</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay('/')">/</button>
-          </div>
-        </div>
+        <div class="row border-bottom border-dark border-2">
+          <div class="col">
+            
+            <div class="js-display text-end fs-1 overflow-hidden" style="max-height: 1.5em;"></div>
 
-        <div class="row justify-content-center">
-          <div class="col align-items-center">
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(4)">4</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(5)">5</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(6)">6</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay('-')">-</button>
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="col align-items-center">
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(1)">1</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(2)">2</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(3)">3</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay('+')">+</button>
           </div>
         </div>
         
-        <div class="row justify-content-center">
-          <div class="col align-items-center">
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay('%')">%</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay(0)">0</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="addCharToDisplay('.')">.</button>
-            <button type="button" class="button btn btn-lg btn-outline-dark" onclick="getResult()">=</button>
-          </div>
-        </div>
+        <div class="row justify-content-md-center">
+          <div class="col-md-auto">
 
+              <div class="row m-1">
+                <div class="col">
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-bold" onclick="clearInputField()">AC</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="removeLastCharacter()">&#8592;</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('negative')">+/-</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('/')">/</button>
+                </div>
+              </div>
+      
+              <div class="row m-1">
+                <div class="col">
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(7)">7</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(8)">8</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(9)">9</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('x')">x</button>
+                </div>
+              </div>
+      
+              <div class="row m-1">
+                <div class="col">
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(4)">4</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(5)">5</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(6)">6</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('-')">-</button>
+                </div>
+              </div>
+      
+              <div class="row m-1">
+                <div class="col">
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(1)">1</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(2)">2</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(3)">3</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('+')">+</button>
+                </div>
+              </div>
+              
+              <div class="row m-1">
+                <div class="col">
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('%')">%</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3" onclick="addCharToDisplay(0)">0</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="addCharToDisplay('.')">.</button>
+                  <button type="button" class="button btn btn-lg btn-outline-dark p-0 fs-3 fw-semibold" onclick="getResult()">=</button>
+                </div>
+              </div>
+            
+          </div>
+        </div>  
       </div>
       
     </div>

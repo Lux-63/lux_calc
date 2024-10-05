@@ -1,5 +1,5 @@
 ﻿document.addEventListener("keydown", handleKey);
-const showOnDisplay = document.querySelector(".display");
+const showOnDisplay = document.querySelector(".js-display");
 showOnDisplay.focus();
 
 //основной массив.
