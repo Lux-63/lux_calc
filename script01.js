@@ -120,7 +120,7 @@ function addCharToDisplay(currentChar) {
   const isCurrentCharSpecial = specialChars.includes(currentChar);
 
   if (calculateData[0] === "-" && isCurrentCharSpecial === false) {
-    calculateData.splice(0,1, -currentChar)
+    calculateData.splice(0, 1, -currentChar);
     showOnDisplayChars();
     return;
   }
@@ -264,7 +264,6 @@ function defineOperator(operandOne, operator, operandTwo) {
 function fractions(operandOne, operandTwo) {
   return Number(String(operandOne) + "." + String(operandTwo));
 }
-
 
 /**
  * Сложение.
